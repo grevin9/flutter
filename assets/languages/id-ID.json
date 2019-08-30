@@ -1,0 +1,48 @@
+{
+  "main_page": {
+    "header": "Bahasa",
+    "title": "Pilih bahasa",
+    "button": "SELANJUTNYA",
+    "english": "Inggris",
+    "indonesia": "Bahasa Indonesia"
+  },
+  "login_page": {
+    "title": "Selamat Datang",
+    "subtitle": "Masuk untuk lanjut",
+    "hint_user_name": "Nama pengguna atau nomor telepon",
+    "hint_passowrd": "Kata sandi",
+    "forgot_password": "Lupa kata sandi?",
+    "button": "MASUK",
+    "dont_have_account": "Belum punya akun? ",
+    "sign_up": "Daftar",
+    "or": "ATAU",
+    "login": "MASUK"
+  },
+  "signup_page": {
+    "top": "DAFTAR",
+    "full_name": "Nama Lengkap",
+    "hint_full_name": "Contoh: Gre Vin",
+    "user_name": "Nama Pengguna",
+    "hint_user_name": "Contoh: GreVin",
+    "bod": "Tanggal Lahir",
+    "hint_bod": "Contoh: 01-01-1990",
+    "button_date": "Selesai",
+    "email": "Email",
+    "hint_email": "Contoh: grevin@gmail.com",
+    "gender": "Kelamin",
+    "male": "Laki-laki",
+    "female": "Perempuan",
+    "phone": "Telepon",
+    "hint_phone": "Contoh: 081298xxxxxx",
+    "password": "Kata Sandi",
+    "hint_password": "Ex: ∙∙∙∙∙∙∙∙",
+    "confirm_password": "Konfirmasi Kata Sandi",
+    "hint_confirm_password": "Ex: ∙∙∙∙∙∙∙∙",
+    "agree": "Saya telah membaca dan menyetujui ",
+    "term": "ketentuan layanan"
+  },
+  "signup_validation": {
+    "username_filled": "Nama pengguna harus diisi",
+    "username_length": "Nama Pengguna harus 3 - 15 karater"
+  }
+}

@@ -21,6 +21,24 @@ class _MainState extends State<Main> {
         iconTheme: IconThemeData(color: ca_blue),
         backgroundColor: Colors.white,
       ),
+      body: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Username',
+                style: TextStyle(
+                  color: ca_gray,
+                ),
+              ),
+              Text(
+                widget.desc,
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

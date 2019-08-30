@@ -1,0 +1,48 @@
+{
+  "main_page": {
+    "header": "Language",
+    "title": "Choose language",
+    "button": "NEXT",
+    "english": "English",
+    "indonesia": "Indonesia"
+  },
+  "login_page": {
+    "title": "Welcome",
+    "subtitle": "Sign in to continue",
+    "hint_user_name": "Username or phone number",
+    "hint_passowrd": "Password",
+    "forgot_password": "Forgot passoword?",
+    "button": "SIGN IN",
+    "dont_have_account": "Don't have an account? ",
+    "sign_up": "Sign up",
+    "or": "OR",
+    "login": "LOGIN"
+  },
+  "signup_page": {
+    "top": "SIGN UP",
+    "full_name": "Full Name",
+    "hint_full_name": "Ex: Gre Vin",
+    "user_name": "Username",
+    "hint_user_name": "Ex: GreVin",
+    "bod": "Birth Of Date",
+    "hint_bod": "Ex: 01-01-1990",
+    "button_date": "Done",
+    "email": "Email",
+    "hint_email": "Ex: grevin@gmail.com",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "phone": "Phone",
+    "hint_phone": "Ex: 081298xxxxxx",
+    "password": "Password",
+    "hint_password": "Ex: ∙∙∙∙∙∙∙∙",
+    "confirm_password": "Confirm Password",
+    "hint_confirm_password": "Ex: ∙∙∙∙∙∙∙∙",
+    "agree": "I have read and agree to the ",
+    "term": "terms of service"
+  },
+  "signup_validation": {
+    "username_filled": "Username must be filled",
+    "username_length": "Username must 3 - 15 character"
+  }
+}
