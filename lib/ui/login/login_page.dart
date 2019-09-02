@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/images.dart';
 import 'package:flutter_app/common/widget/button.dart';
 import 'package:flutter_app/common/colors.dart';
 import 'package:flutter_app/common/sizes.dart';
+import 'package:flutter_app/common/widget/button_facebook.dart';
+import 'package:flutter_app/common/widget/button_google.dart';
+import 'package:flutter_app/ui/login/forgot_password_page.dart';
 import 'package:flutter_app/ui/login/signup_page.dart';
 import 'package:flutter_app/ui/main/main_page.dart';
 import 'package:flutter/foundation.dart';
@@ -60,9 +62,8 @@ class _LoginState extends State<Login> {
                       fontFamily: "CircularStd-Book"),
                 ),
                 _form(),
-                Container(
+                Align(
                   alignment: Alignment.center,
-                  margin: EdgeInsets.only(top: _sizes.width16dp(context)),
                   child: GestureDetector(
                     child: Text(
                       AppLocalizations.of(context)
@@ -73,7 +74,10 @@ class _LoginState extends State<Login> {
                           fontFamily: 'CircularStd-Book'),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPassword()));
                     },
                   ),
                 ),
@@ -115,14 +119,14 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                AppLocalizations.of(context)
-                    .tr("login_page.dont_have_account"),
+                AppLocalizations.of(context).tr("login_page.dont_have_account"),
                 style: TextStyle(
                     fontSize: _sizes.width14dp(context),
                     fontFamily: "CircularStd-Book"),
               ),
               GestureDetector(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp())),
+                onTap: () => Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => SignUp())),
                 child: Text(
                   AppLocalizations.of(context).tr("login_page.sign_up"),
                   style: TextStyle(
@@ -157,7 +161,8 @@ class _LoginState extends State<Login> {
               },
               decoration: InputDecoration(
                   hintText: AppLocalizations.of(context)
-                      .tr('login_page.hint_user_name'), hintStyle: TextStyle(fontSize: _sizes.width14dp(context))),
+                      .tr('login_page.hint_user_name'),
+                  hintStyle: TextStyle(fontSize: _sizes.width14dp(context))),
             ),
           ),
           Container(
@@ -165,7 +170,8 @@ class _LoginState extends State<Login> {
             child: TextField(
               decoration: InputDecoration(
                   hintText: AppLocalizations.of(context)
-                      .tr('login_page.hint_passowrd'), hintStyle: TextStyle(fontSize: _sizes.width14dp(context))),
+                      .tr('login_page.hint_passowrd'),
+                  hintStyle: TextStyle(fontSize: _sizes.width14dp(context))),
             ),
           ),
           Container(
@@ -220,9 +226,19 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-          Button(
-              title: AppLocalizations.of(context).tr('login_page.button'),
-              to: Main(title: _textController.text, desc: "Kamu"))
+          GestureDetector(
+            onTap: () => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Main(
+                            title: _textController.text,
+                            desc: "kamu",
+                          )))
+            },
+            child: Button(
+                title: AppLocalizations.of(context).tr('login_page.button')),
+          )
         ],
       ),
     );
@@ -230,102 +246,19 @@ class _LoginState extends State<Login> {
 
   Widget _facebook() {
     return GestureDetector(
-      child: Container(
-        margin: EdgeInsets.only(top: _sizes.width16dp(context)),
-        padding: EdgeInsets.only(
-            top: _sizes.width12dp(context), bottom: _sizes.width12dp(context)),
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0), color: ca_facebook),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(right: _sizes.width6dp(context)),
-              child: Image(
-                height: _sizes.width14dp(context),
-                width: _sizes.width14dp(context),
-                image: AssetImage(icon_fb),
-              ),
-            ),
-            Text(
-              'Facebook',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: "CircularStd-Book",
-                  fontSize: _sizes.width14dp(context)),
-            )
-          ],
-        ),
-      ),
+      onTap: () => {
+
+      },
+      child: ButtonFacebook()
     );
   }
 
   Widget _google() {
     return GestureDetector(
-      child: Container(
-        margin: EdgeInsets.only(top: _sizes.width16dp(context)),
-        padding: EdgeInsets.only(
-            top: _sizes.width12dp(context), bottom: _sizes.width12dp(context)),
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0), color: Colors.white),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(right: _sizes.width6dp(context)),
-              child: Image(
-                height: _sizes.width14dp(context),
-                width: _sizes.width14dp(context),
-                image: AssetImage(icon_google),
-              ),
-            ),
-            Text(
-              'G',
-              style: TextStyle(
-                  color: ca_google_blue,
-                  fontFamily: "CircularStd-Book",
-                  fontSize: _sizes.width14dp(context)),
-            ),
-            Text(
-              'o',
-              style: TextStyle(
-                  color: ca_google_red,
-                  fontFamily: "CircularStd-Book",
-                  fontSize: _sizes.width14dp(context)),
-            ),
-            Text(
-              'o',
-              style: TextStyle(
-                  color: ca_google_yellow,
-                  fontFamily: "CircularStd-Book",
-                  fontSize: _sizes.width14dp(context)),
-            ),
-            Text(
-              'g',
-              style: TextStyle(
-                  color: ca_google_blue,
-                  fontFamily: "CircularStd-Book",
-                  fontSize: _sizes.width14dp(context)),
-            ),
-            Text(
-              'l',
-              style: TextStyle(
-                  color: ca_google_green,
-                  fontFamily: "CircularStd-Book",
-                  fontSize: _sizes.width14dp(context)),
-            ),
-            Text(
-              'e',
-              style: TextStyle(
-                  color: ca_google_red,
-                  fontFamily: "CircularStd-Book",
-                  fontSize: _sizes.width14dp(context)),
-            )
-          ],
-        ),
-      ),
+      onTap: () => {
+
+      },
+      child: ButtonGoogle()
     );
   }
 }

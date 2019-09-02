@@ -116,7 +116,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text(
                           AppLocalizations.of(context)
                               .tr('main_page.indonesia'),
-                          style: TextStyle(fontFamily: "CircularStd-Medium", fontSize: _sizes.width14dp(context)),
+                          style: TextStyle(
+                              fontFamily: "CircularStd-Medium",
+                              fontSize: _sizes.width14dp(context)),
                         ),
                         Opacity(
                             opacity: opacity == 2.0 ? 1.0 : 0.0,
@@ -130,12 +132,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 1,
                   color: ca_gray,
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: _sizes.width20dp(context)),
+                GestureDetector(
+                  onTap: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Login()))
+                  },
                   child: Button(
-                    title: AppLocalizations.of(context).tr('main_page.button'),
-                    to: Login(),
-                  ),
+                      title:
+                          AppLocalizations.of(context).tr('main_page.button')),
                 )
               ],
             ),

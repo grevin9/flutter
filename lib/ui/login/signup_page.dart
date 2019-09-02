@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_app/common/colors.dart';
 import 'package:flutter_app/common/sizes.dart';
+import 'package:flutter_app/common/widget/button_form.dart';
 import 'package:flutter_app/logic/validation_signup.dart';
 import 'package:intl/intl.dart';
 
@@ -16,8 +17,9 @@ class _SignUpState extends State<SignUp> {
   Sizes _sizes = Sizes();
   ValidationSignUp _validation = ValidationSignUp();
   final _validator = GlobalKey<FormState>();
-  var _date = "";
+  var _passwordController = TextEditingController();
   var _dateController = TextEditingController();
+  var _date = "";
   var _flagMale = false;
   var _flagFemale = false;
   var _flagTerm = false;
@@ -65,7 +67,9 @@ class _SignUpState extends State<SignUp> {
           child: Text(AppLocalizations.of(context).tr('signup_page.password')),
         ),
         TextFormField(
+          validator: (value) => _validation.password(context, value),
           obscureText: true,
+          controller: _passwordController,
           decoration: InputDecoration(
             hintText:
                 AppLocalizations.of(context).tr('signup_page.hint_password'),
@@ -79,6 +83,8 @@ class _SignUpState extends State<SignUp> {
               AppLocalizations.of(context).tr('signup_page.confirm_password')),
         ),
         TextFormField(
+          validator: (value) => _validation.confirmPassword(
+              context, value, _passwordController.text),
           obscureText: true,
           decoration: InputDecoration(
             hintText: AppLocalizations.of(context)
@@ -92,6 +98,7 @@ class _SignUpState extends State<SignUp> {
           child: Text(AppLocalizations.of(context).tr('signup_page.full_name')),
         ),
         TextFormField(
+          validator: (value) => _validation.fullName(context, value),
           decoration: InputDecoration(
             hintText:
                 AppLocalizations.of(context).tr('signup_page.hint_full_name'),
@@ -114,6 +121,7 @@ class _SignUpState extends State<SignUp> {
               readOnly: true,
               autofocus: false,
               controller: _dateController,
+              validator: (value) => _validation.bod(context, value),
               decoration: InputDecoration(
                   hintText:
                       AppLocalizations.of(context).tr('signup_page.hint_bod'),
@@ -129,6 +137,7 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
         TextFormField(
+          validator: (value) => _validation.email(context, value),
           decoration: InputDecoration(
               hintText:
                   AppLocalizations.of(context).tr('signup_page.hint_email'),
@@ -142,6 +151,7 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
         TextFormField(
+          validator: (value) => _validation.phone(context, value),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
               hintText:
@@ -203,15 +213,22 @@ class _SignUpState extends State<SignUp> {
             )
           ],
         ),
-        RaisedButton(
-          onPressed: () {
-            if (_validator.currentState.validate()) {
-              Scaffold.of(context)
-                  .showSnackBar(SnackBar(content: Text('Processing Data')));
-            }
-          },
-        )
+        Builder(builder: (context) => Center(child: _submit()))
       ],
+    );
+  }
+
+  Widget _submit() {
+    return GestureDetector(
+      onTap: () => {
+        if (_validator.currentState.validate() &&
+            _flagTerm &&
+            (_flagMale || _flagFemale))
+          {Navigator.pop(context)}
+      },
+      child: ButtonForm(
+        title: AppLocalizations.of(context).tr('signup_page.button'),
+      ),
     );
   }
 
