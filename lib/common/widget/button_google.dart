@@ -9,15 +9,18 @@ class ButtonGoogle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: _sizes.width16dp(context)),
-      padding: EdgeInsets.only(
-          top: _sizes.width12dp(context), bottom: _sizes.width12dp(context)),
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0), color: Colors.white),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        margin: EdgeInsets.only(top: _sizes.width16dp(context)),
+        padding: EdgeInsets.only(
+            top: _sizes.width12dp(context), bottom: _sizes.width12dp(context)),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+              blurRadius: 8.0,
+              color: Colors.black.withOpacity(.6),
+              offset: Offset(1.0, 2.0))
+        ], borderRadius: BorderRadius.circular(8.0), color: Colors.white),
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           Container(
             margin: EdgeInsets.only(right: _sizes.width6dp(context)),
             child: Image(
@@ -68,9 +71,6 @@ class ButtonGoogle extends StatelessWidget {
                 fontFamily: "CircularStd-Book",
                 fontSize: _sizes.width14dp(context)),
           )
-        ]
-      )
-    );
+        ]));
   }
 }
-

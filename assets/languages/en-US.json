@@ -2,21 +2,26 @@
   "main_page": {
     "header"    : "Language",
     "title"     : "Choose language",
-    "button"    : "NEXT",
+    "button"    : "Next",
     "english"   : "English",
     "indonesia" : "Indonesia"
   },
   "login_page": {
+    "top"               : "LOGIN",
     "title"             : "Welcome",
     "subtitle"          : "Sign in to continue",
-    "hint_user_name"    : "Username or phone number",
+    "hint_user_name"    : "Username or Phone",
     "hint_passowrd"     : "Password",
     "forgot_password"   : "Forgot passoword?",
-    "button"            : "SIGN IN",
+    "button"            : "Sign In",
     "dont_have_account" : "Don't have an account? ",
     "sign_up"           : "Sign up",
     "or"                : "OR",
-    "login"             : "LOGIN"
+    "login_fail"        : "Login Failed!"
+  },
+  "login_validation": {
+    "username_filled" : "Username or Phone or Email must be filled",
+    "password_filled" : "Password must be filled"
   },
   "signup_page": {
     "top"                   : "SIGN UP",
@@ -57,10 +62,10 @@
     "phone_valid"     : "Phone must be 5 - 15 digit"
   },
   "forgot_password_page": {
-    "top" : "FORGOT PASSWORD",
-    "title" : "Forgot Password?",
-    "email" : "Email",
-    "hint_email" : "Ex: grevin@gmail.com"
+    "top"         : "FORGOT PASSWORD",
+    "email"       : "Email",
+    "hint_email"  : "Ex: grevin@gmail.com",
+    "button"      : "Send"
   },
   "forgot_password_validation": {
     "email_filled"  : "Email must be filled",

@@ -5,7 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_app/common/colors.dart';
 import 'package:flutter_app/common/sizes.dart';
 import 'package:flutter_app/common/widget/button_form.dart';
-import 'package:flutter_app/logic/validation_signup.dart';
+import 'package:flutter_app/common/validation/validation_signup.dart';
+import 'package:flutter_app/common/database/database_login.dart';
 import 'package:intl/intl.dart';
 
 class SignUp extends StatefulWidget {
@@ -17,7 +18,12 @@ class _SignUpState extends State<SignUp> {
   Sizes _sizes = Sizes();
   ValidationSignUp _validation = ValidationSignUp();
   final _validator = GlobalKey<FormState>();
+  final db = DatabaseLogin.instance;
+  var _userNameController = TextEditingController();
   var _passwordController = TextEditingController();
+  var _fullNameController = TextEditingController();
+  var _emailController = TextEditingController();
+  var _phoneController = TextEditingController();
   var _dateController = TextEditingController();
   var _date = "";
   var _flagMale = false;
@@ -56,6 +62,7 @@ class _SignUpState extends State<SignUp> {
         ),
         TextFormField(
           validator: (value) => _validation.userName(context, value),
+          controller: _userNameController,
           decoration: InputDecoration(
               hintText:
                   AppLocalizations.of(context).tr('signup_page.hint_user_name'),
@@ -99,6 +106,7 @@ class _SignUpState extends State<SignUp> {
         ),
         TextFormField(
           validator: (value) => _validation.fullName(context, value),
+          controller: _fullNameController,
           decoration: InputDecoration(
             hintText:
                 AppLocalizations.of(context).tr('signup_page.hint_full_name'),
@@ -138,6 +146,7 @@ class _SignUpState extends State<SignUp> {
         ),
         TextFormField(
           validator: (value) => _validation.email(context, value),
+          controller: _emailController,
           decoration: InputDecoration(
               hintText:
                   AppLocalizations.of(context).tr('signup_page.hint_email'),
@@ -152,6 +161,7 @@ class _SignUpState extends State<SignUp> {
         ),
         TextFormField(
           validator: (value) => _validation.phone(context, value),
+          controller: _phoneController,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
               hintText:
@@ -224,12 +234,29 @@ class _SignUpState extends State<SignUp> {
         if (_validator.currentState.validate() &&
             _flagTerm &&
             (_flagMale || _flagFemale))
-          {Navigator.pop(context)}
+          {_insert()}
       },
       child: ButtonForm(
         title: AppLocalizations.of(context).tr('signup_page.button'),
       ),
     );
+  }
+
+  void _insert() async {
+    var _gender = 0;
+    if (_flagMale) _gender = 1;
+    if (_flagFemale) _gender = 2;
+    Map<String, dynamic> row = {
+      DatabaseLogin.columnUserName: _userNameController.text,
+      DatabaseLogin.columnPassword: _passwordController.text,
+      DatabaseLogin.columnFullName: _fullNameController.text,
+      DatabaseLogin.columnBOD: _dateController,
+      DatabaseLogin.columnEmail: _emailController,
+      DatabaseLogin.columnPhone: _phoneController,
+      DatabaseLogin.columnGender: _gender,
+    };
+    await db.insert(row);
+    Navigator.pop(context);
   }
 
   _time() async {

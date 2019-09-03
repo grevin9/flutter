@@ -2,21 +2,26 @@
   "main_page": {
     "header"    : "Bahasa",
     "title"     : "Pilih bahasa",
-    "button"    : "SELANJUTNYA",
+    "button"    : "Selanjutnya",
     "english"   : "Inggris",
     "indonesia" : "Bahasa Indonesia"
   },
   "login_page": {
+    "top"               : "MASUK",
     "title"             : "Selamat Datang",
     "subtitle"          : "Masuk untuk lanjut",
-    "hint_user_name"    : "Nama pengguna atau nomor telepon",
+    "hint_user_name"    : "Nama pengguna atau Telepon",
     "hint_passowrd"     : "Kata sandi",
     "forgot_password"   : "Lupa kata sandi?",
-    "button"            : "MASUK",
+    "button"            : "Masuk",
     "dont_have_account" : "Belum punya akun? ",
     "sign_up"           : "Daftar",
     "or"                : "ATAU",
-    "login"             : "MASUK"
+    "login_fail"        : "Gagal Masuk!"
+  },
+  "login_validation": {
+    "username_filled" : "Nama Pengguna atau Telepon atau Email harus diisi",
+    "password_filled" : "Kata Sandi harus diisi"
   },
   "signup_page": {
     "top"                   : "DAFTAR",
@@ -57,10 +62,10 @@
     "phone_valid"     : "Phone harus 5 - 15 angka"
   },
   "forgot_password_page": {
-    "top" : "LUPA KATA SANDI",
-    "title" : "Lupa Kata Sandi?",
-    "email" : "Email",
-    "hint_email" : "Contoh: grevin@gmail.com"
+    "top"         : "LUPA KATA SANDI",
+    "email"       : "Email",
+    "hint_email"  : "Contoh: grevin@gmail.com",
+    "button"      : "Kirim"
   },
   "forgot_password_validation": {
     "email_filled"  : "Email harus diisi",

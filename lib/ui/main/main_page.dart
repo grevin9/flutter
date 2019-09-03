@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/colors.dart';
 
 class Main extends StatefulWidget {
-  final String title;
-  final String desc;
-  const Main({Key key, this.title, this.desc}) : super(key: key);
   @override
   _MainState createState() => _MainState();
 }
@@ -15,7 +12,7 @@ class _MainState extends State<Main> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.title,
+          'WELCOM',
           style: TextStyle(color: ca_blue),
         ),
         iconTheme: IconThemeData(color: ca_blue),
@@ -23,20 +20,7 @@ class _MainState extends State<Main> {
       ),
       body: Column(
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                'Username',
-                style: TextStyle(
-                  color: ca_gray,
-                ),
-              ),
-              Text(
-                widget.desc,
-              )
-            ],
-          )
+
         ],
       ),
     );

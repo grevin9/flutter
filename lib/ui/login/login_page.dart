@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/database/database_login.dart';
 import 'package:flutter_app/common/widget/button.dart';
 import 'package:flutter_app/common/colors.dart';
 import 'package:flutter_app/common/sizes.dart';
 import 'package:flutter_app/common/widget/button_facebook.dart';
 import 'package:flutter_app/common/widget/button_google.dart';
+import 'package:flutter_app/common/validation/validation_login.dart';
 import 'package:flutter_app/ui/login/forgot_password_page.dart';
 import 'package:flutter_app/ui/login/signup_page.dart';
 import 'package:flutter_app/ui/main/main_page.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:toast/toast.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -18,22 +20,18 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   Sizes _sizes = Sizes();
-  final _formKey = GlobalKey<FormState>();
-  var _textController = new TextEditingController();
-  bool _switch = false;
-
-  @override
-  void dispose() {
-    _textController.dispose();
-    super.dispose();
-  }
+  ValidationLogin _validation = ValidationLogin();
+  final _validator = GlobalKey<FormState>();
+  final db = DatabaseLogin.instance;
+  var _userNameController = TextEditingController();
+  var _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context).tr('login_page.login'),
+          AppLocalizations.of(context).tr('login_page.top'),
           style: TextStyle(color: ca_blue),
         ),
         backgroundColor: Colors.white,
@@ -62,46 +60,7 @@ class _LoginState extends State<Login> {
                       fontFamily: "CircularStd-Book"),
                 ),
                 _form(),
-                Align(
-                  alignment: Alignment.center,
-                  child: GestureDetector(
-                    child: Text(
-                      AppLocalizations.of(context)
-                          .tr('login_page.forgot_password'),
-                      style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontSize: _sizes.width14dp(context),
-                          fontFamily: 'CircularStd-Book'),
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgotPassword()));
-                    },
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: _sizes.width16dp(context)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        height: 1,
-                        color: ca_gray,
-                      ),
-                      Text(
-                        AppLocalizations.of(context).tr('login_page.or'),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        height: 1,
-                        color: ca_gray,
-                      )
-                    ],
-                  ),
-                ),
+                _other(),
                 _facebook(),
                 _google(),
               ],
@@ -144,21 +103,14 @@ class _LoginState extends State<Login> {
 
   Widget _form() {
     return Form(
-      key: _formKey,
+      key: _validator,
       child: Column(
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(top: _sizes.width16dp(context)),
             child: TextFormField(
-              controller: _textController,
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'please wait';
-                } else if (value.length < 5) {
-                  return 'length';
-                }
-                return null;
-              },
+              validator: (value) => _validation.userName(context, value),
+              controller: _userNameController,
               decoration: InputDecoration(
                   hintText: AppLocalizations.of(context)
                       .tr('login_page.hint_user_name'),
@@ -167,7 +119,10 @@ class _LoginState extends State<Login> {
           ),
           Container(
             margin: EdgeInsets.only(top: _sizes.width16dp(context)),
-            child: TextField(
+            child: TextFormField(
+              validator: (value) => _validation.password(context, value),
+              controller: _passwordController,
+              obscureText: true,
               decoration: InputDecoration(
                   hintText: AppLocalizations.of(context)
                       .tr('login_page.hint_passowrd'),
@@ -176,65 +131,57 @@ class _LoginState extends State<Login> {
           ),
           Container(
             margin: EdgeInsets.only(top: _sizes.width16dp(context)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Saved Log in',
-                  style: TextStyle(
-                      fontSize: _sizes.width14dp(context),
-                      fontFamily: "CircularStd-Book"),
-                ),
-                defaultTargetPlatform == TargetPlatform.android
-                    ? Switch(
-                        value: _switch,
-                        onChanged: (bool value) {
-                          setState(() {
-                            _switch = value;
-                          });
-                        },
-                        activeColor: ca_red,
-                      )
-                    : CupertinoSwitch(
-                        value: _switch,
-                        onChanged: (bool value) {
-                          setState(() {
-                            _switch = value;
-                          });
-                        },
-                        activeColor: ca_red,
-                      ),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: _sizes.width16dp(context)),
-            child: RaisedButton(
-              color: Colors.red,
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-              },
+            alignment: Alignment.topRight,
+            child: GestureDetector(
               child: Text(
-                'Submit',
+                AppLocalizations.of(context).tr('login_page.forgot_password'),
                 style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width / 34,
-                  color: Colors.white,
-                ),
+                    decoration: TextDecoration.underline,
+                    fontSize: _sizes.width14dp(context),
+                    fontFamily: 'CircularStd-Book'),
               ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ForgotPassword()));
+              },
             ),
           ),
+//          Container(
+//            margin: EdgeInsets.only(top: _sizes.width16dp(context)),
+//            child: Row(
+//              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//              children: <Widget>[
+//                Text(
+//                  'Saved Log in',
+//                  style: TextStyle(
+//                      fontSize: _sizes.width14dp(context),
+//                      fontFamily: "CircularStd-Book"),
+//                ),
+//                defaultTargetPlatform == TargetPlatform.android
+//                    ? Switch(
+//                        value: _switch,
+//                        onChanged: (bool value) {
+//                          setState(() {
+//                            _switch = value;
+//                          });
+//                        },
+//                        activeColor: ca_red,
+//                      )
+//                    : CupertinoSwitch(
+//                        value: _switch,
+//                        onChanged: (bool value) {
+//                          setState(() {
+//                            _switch = value;
+//                          });
+//                        },
+//                        activeColor: ca_red,
+//                      ),
+//              ],
+//            ),
+//          ),
           GestureDetector(
             onTap: () => {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Main(
-                            title: _textController.text,
-                            desc: "kamu",
-                          )))
+              if (_validator.currentState.validate()) {_getLogin()}
             },
             child: Button(
                 title: AppLocalizations.of(context).tr('login_page.button')),
@@ -244,21 +191,48 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget _facebook() {
-    return GestureDetector(
-      onTap: () => {
-
-      },
-      child: ButtonFacebook()
+  Widget _other() {
+    return Container(
+      margin: EdgeInsets.only(top: _sizes.width4dp(context)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width / 2.5,
+            height: 1,
+            color: ca_gray,
+          ),
+          Text(
+            AppLocalizations.of(context).tr('login_page.or'),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width / 2.5,
+            height: 1,
+            color: ca_gray,
+          )
+        ],
+      ),
     );
   }
 
-  Widget _google() {
-    return GestureDetector(
-      onTap: () => {
+  Widget _facebook() {
+    return GestureDetector(onTap: () => {}, child: ButtonFacebook());
+  }
 
-      },
-      child: ButtonGoogle()
-    );
+  Widget _google() {
+    return GestureDetector(onTap: () => {}, child: ButtonGoogle());
+  }
+
+  void _getLogin() async {
+    Map<String, dynamic> row = {
+      DatabaseLogin.columnUserName: _userNameController.text,
+      DatabaseLogin.columnPassword: _passwordController.text,
+    };
+    final login = await db.getLogin(row);
+    if (login == 1) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Main()));
+    } else {
+      Toast.show(AppLocalizations.of(context).tr('login_page.login_fail'), context);
+    }
   }
 }

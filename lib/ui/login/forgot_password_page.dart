@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/colors.dart';
 import 'package:flutter_app/common/sizes.dart';
 import 'package:flutter_app/common/widget/button_form.dart';
-import 'package:flutter_app/logic/validation_forgot_password.dart';
+import 'package:flutter_app/common/validation/validation_forgot_password.dart';
 
 class ForgotPassword extends StatefulWidget {
   @override
@@ -33,12 +33,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               right: _sizes.width16dp(context)),
           child: Column(
             children: <Widget>[
-              Text(
-                AppLocalizations.of(context).tr('forgot_password_page.title'),
-                style: TextStyle(fontSize: _sizes.width20dp(context)),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: _sizes.width20dp(context)),
+              Align(
                 alignment: Alignment.topLeft,
                 child: Text(AppLocalizations.of(context)
                     .tr('forgot_password_page.email')),
@@ -65,7 +60,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         if (_validator.currentState.validate()) {Navigator.pop(context)}
       },
       child: ButtonForm(
-        title: AppLocalizations.of(context).tr('signup_page.button'),
+        title: AppLocalizations.of(context).tr('forgot_password_page.button'),
       ),
     );
   }

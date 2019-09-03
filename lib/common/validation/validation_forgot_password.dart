@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/logic/validation.dart';
+import 'package:flutter_app/common/validation/validation.dart';
 
 class ValidationForgotPassword{
   email(BuildContext context, String value){
