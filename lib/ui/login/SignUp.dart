@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_app/common/colors.dart';
-import 'package:flutter_app/common/sizes.dart';
-import 'package:flutter_app/common/widget/button_form.dart';
-import 'package:flutter_app/common/validation/validation_signup.dart';
-import 'package:flutter_app/common/database/database_login.dart';
+import 'package:flutter_app/common/Colors.dart';
+import 'package:flutter_app/common/FontFamily.dart';
+import 'package:flutter_app/common/Sizes.dart';
+import 'package:flutter_app/common/widget/ButtonForm.dart';
+import 'package:flutter_app/common/validation/ValidationSignUp.dart';
+import 'package:flutter_app/common/database/DatabaseLogin.dart';
 import 'package:intl/intl.dart';
 
 class SignUp extends StatefulWidget {
@@ -36,7 +37,7 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context).tr('signup_page.top'),
-          style: TextStyle(color: ca_blue),
+          style: TextStyle(fontFamily: circular_book, color: ca_blue),
         ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: ca_blue),
@@ -58,7 +59,7 @@ class _SignUpState extends State<SignUp> {
       children: <Widget>[
         Align(
           alignment: Alignment.topLeft,
-          child: Text(AppLocalizations.of(context).tr('signup_page.user_name')),
+          child: Text(AppLocalizations.of(context).tr('signup_page.user_name'), style: TextStyle(fontFamily: circular_medium)),
         ),
         TextFormField(
           validator: (value) => _validation.userName(context, value),
@@ -71,7 +72,7 @@ class _SignUpState extends State<SignUp> {
         Container(
           margin: EdgeInsets.only(top: _sizes.width20dp(context)),
           alignment: Alignment.topLeft,
-          child: Text(AppLocalizations.of(context).tr('signup_page.password')),
+          child: Text(AppLocalizations.of(context).tr('signup_page.password'), style: TextStyle(fontFamily: circular_medium)),
         ),
         TextFormField(
           validator: (value) => _validation.password(context, value),
@@ -87,7 +88,7 @@ class _SignUpState extends State<SignUp> {
           margin: EdgeInsets.only(top: _sizes.width20dp(context)),
           alignment: Alignment.topLeft,
           child: Text(
-              AppLocalizations.of(context).tr('signup_page.confirm_password')),
+              AppLocalizations.of(context).tr('signup_page.confirm_password'), style: TextStyle(fontFamily: circular_medium)),
         ),
         TextFormField(
           validator: (value) => _validation.confirmPassword(
@@ -102,7 +103,7 @@ class _SignUpState extends State<SignUp> {
         Container(
           margin: EdgeInsets.only(top: _sizes.width20dp(context)),
           alignment: Alignment.topLeft,
-          child: Text(AppLocalizations.of(context).tr('signup_page.full_name')),
+          child: Text(AppLocalizations.of(context).tr('signup_page.full_name'), style: TextStyle(fontFamily: circular_medium)),
         ),
         TextFormField(
           validator: (value) => _validation.fullName(context, value),
@@ -117,7 +118,7 @@ class _SignUpState extends State<SignUp> {
           margin: EdgeInsets.only(top: _sizes.width20dp(context)),
           alignment: Alignment.topLeft,
           child: Text(
-            AppLocalizations.of(context).tr('signup_page.bod'),
+            AppLocalizations.of(context).tr('signup_page.bod'), style: TextStyle(fontFamily: circular_medium),
           ),
         ),
         GestureDetector(
@@ -141,7 +142,7 @@ class _SignUpState extends State<SignUp> {
           margin: EdgeInsets.only(top: _sizes.width20dp(context)),
           alignment: Alignment.topLeft,
           child: Text(
-            AppLocalizations.of(context).tr('signup_page.email'),
+            AppLocalizations.of(context).tr('signup_page.email'), style: TextStyle(fontFamily: circular_medium)
           ),
         ),
         TextFormField(
@@ -156,7 +157,7 @@ class _SignUpState extends State<SignUp> {
           margin: EdgeInsets.only(top: _sizes.width20dp(context)),
           alignment: Alignment.topLeft,
           child: Text(
-            AppLocalizations.of(context).tr('signup_page.phone'),
+            AppLocalizations.of(context).tr('signup_page.phone'), style: TextStyle(fontFamily: circular_medium)
           ),
         ),
         TextFormField(
@@ -171,7 +172,7 @@ class _SignUpState extends State<SignUp> {
         Container(
           margin: EdgeInsets.only(top: _sizes.width20dp(context)),
           alignment: Alignment.topLeft,
-          child: Text(AppLocalizations.of(context).tr('signup_page.gender')),
+          child: Text(AppLocalizations.of(context).tr('signup_page.gender'), style: TextStyle(fontFamily: circular_medium)),
         ),
         Row(
           children: <Widget>[
@@ -185,7 +186,7 @@ class _SignUpState extends State<SignUp> {
                 });
               },
             ),
-            Text(AppLocalizations.of(context).tr('signup_page.male')),
+            Text(AppLocalizations.of(context).tr('signup_page.male'), style: TextStyle(fontFamily: circular_medium)),
             Radio(
               value: _flagFemale ? 1 : 0,
               groupValue: 1,
@@ -196,7 +197,7 @@ class _SignUpState extends State<SignUp> {
                 });
               },
             ),
-            Text(AppLocalizations.of(context).tr('signup_page.female'))
+            Text(AppLocalizations.of(context).tr('signup_page.female'), style: TextStyle(fontFamily: circular_medium))
           ],
         ),
         Row(
@@ -214,12 +215,12 @@ class _SignUpState extends State<SignUp> {
             ),
             Text(
               AppLocalizations.of(context).tr('signup_page.agree'),
-              style: TextStyle(fontSize: _sizes.width14dp(context)),
+              style: TextStyle(fontFamily: circular_medium, fontSize: _sizes.width14dp(context)),
             ),
             Text(
               AppLocalizations.of(context).tr('signup_page.term'),
               style: TextStyle(
-                  fontSize: _sizes.width14dp(context), color: Colors.lightBlue),
+                  fontFamily: circular_medium, fontSize: _sizes.width14dp(context), color: Colors.lightBlue),
             )
           ],
         ),

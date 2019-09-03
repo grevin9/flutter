@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/colors.dart';
-import 'package:flutter_app/common/sizes.dart';
+import 'package:flutter_app/common/Colors.dart';
+import 'package:flutter_app/common/Sizes.dart';
 
 class Button extends StatefulWidget {
   final String title;
@@ -33,7 +33,7 @@ class _ButtonFormState extends State<Button> {
           widget.title,
           style: TextStyle(
               color: Colors.white,
-              fontFamily: "CircularStd-Book",
+              fontFamily: "CircularBook",
               fontSize: _sizes.width14dp(context)),
         ));
   }

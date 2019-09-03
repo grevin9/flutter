@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/colors.dart';
-import 'package:flutter_app/common/sizes.dart';
-import 'package:flutter_app/common/widget/button_form.dart';
-import 'package:flutter_app/common/validation/validation_forgot_password.dart';
+import 'package:flutter_app/common/Colors.dart';
+import 'package:flutter_app/common/FontFamily.dart';
+import 'package:flutter_app/common/Sizes.dart';
+import 'package:flutter_app/common/widget/ButtonForm.dart';
+import 'package:flutter_app/common/validation/ValidationForgotPassword.dart';
 
 class ForgotPassword extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).tr('forgot_password_page.top'),
-            style: TextStyle(color: ca_blue)),
+            style: TextStyle(fontFamily: circular_book, color: ca_blue)),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: ca_blue),
       ),
@@ -36,7 +37,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(AppLocalizations.of(context)
-                    .tr('forgot_password_page.email')),
+                    .tr('forgot_password_page.email'), style: TextStyle(fontFamily: circular_medium)),
               ),
               TextFormField(
                 validator: (value) => _validation.email(context, value),

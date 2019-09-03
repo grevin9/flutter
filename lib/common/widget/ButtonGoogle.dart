@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/colors.dart';
-import 'package:flutter_app/common/images.dart';
-import 'package:flutter_app/common/sizes.dart';
+import 'package:flutter_app/common/Colors.dart';
+import 'package:flutter_app/common/Images.dart';
+import 'package:flutter_app/common/Sizes.dart';
 
 class ButtonGoogle extends StatelessWidget {
   Sizes _sizes = Sizes();
@@ -33,42 +33,42 @@ class ButtonGoogle extends StatelessWidget {
             'G',
             style: TextStyle(
                 color: ca_google_blue,
-                fontFamily: "CircularStd-Book",
+                fontFamily: "CircularBook",
                 fontSize: _sizes.width14dp(context)),
           ),
           Text(
             'o',
             style: TextStyle(
                 color: ca_google_red,
-                fontFamily: "CircularStd-Book",
+                fontFamily: "CircularBook",
                 fontSize: _sizes.width14dp(context)),
           ),
           Text(
             'o',
             style: TextStyle(
                 color: ca_google_yellow,
-                fontFamily: "CircularStd-Book",
+                fontFamily: "CircularBook",
                 fontSize: _sizes.width14dp(context)),
           ),
           Text(
             'g',
             style: TextStyle(
                 color: ca_google_blue,
-                fontFamily: "CircularStd-Book",
+                fontFamily: "CircularBook",
                 fontSize: _sizes.width14dp(context)),
           ),
           Text(
             'l',
             style: TextStyle(
                 color: ca_google_green,
-                fontFamily: "CircularStd-Book",
+                fontFamily: "CircularBook",
                 fontSize: _sizes.width14dp(context)),
           ),
           Text(
             'e',
             style: TextStyle(
                 color: ca_google_red,
-                fontFamily: "CircularStd-Book",
+                fontFamily: "CircularBook",
                 fontSize: _sizes.width14dp(context)),
           )
         ]));

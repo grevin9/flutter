@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/colors.dart';
-import 'package:flutter_app/common/images.dart';
-import 'package:flutter_app/common/sizes.dart';
+import 'package:flutter_app/common/Colors.dart';
+import 'package:flutter_app/common/Images.dart';
+import 'package:flutter_app/common/Sizes.dart';
 
 class ButtonFacebook extends StatelessWidget {
   Sizes _sizes = Sizes();
@@ -33,7 +33,7 @@ class ButtonFacebook extends StatelessWidget {
             'Facebook',
             style: TextStyle(
                 color: Colors.white,
-                fontFamily: "CircularStd-Book",
+                fontFamily: "CircularBook",
                 fontSize: _sizes.width14dp(context)),
           )
         ]));

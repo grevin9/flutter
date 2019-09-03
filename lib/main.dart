@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/colors.dart';
-import 'package:flutter_app/ui/login/login_page.dart';
-import 'package:flutter_app/common/sizes.dart';
+import 'package:flutter_app/common/Colors.dart';
+import 'package:flutter_app/common/FontFamily.dart';
+import 'package:flutter_app/ui/login/Login.dart';
+import 'package:flutter_app/common/Sizes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_app/common/widget/button.dart';
+import 'package:flutter_app/common/widget/Button.dart';
 
 void main() => runApp(EasyLocalization(child: MyApp()));
 
@@ -59,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text(
                   AppLocalizations.of(context).tr('main_page.title'),
                   style: TextStyle(
-                      fontFamily: 'CircularStd-Medium',
+                      fontFamily: circular_medium,
                       fontSize: _sizes.width20dp(context)),
                 ),
                 GestureDetector(
@@ -82,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text(
                           AppLocalizations.of(context).tr('main_page.english'),
                           style: TextStyle(
-                              fontFamily: "CircularStd-Medium",
+                              fontFamily: circular_book,
                               fontSize: _sizes.width14dp(context)),
                         ),
                         Opacity(
@@ -117,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           AppLocalizations.of(context)
                               .tr('main_page.indonesia'),
                           style: TextStyle(
-                              fontFamily: "CircularStd-Medium",
+                              fontFamily: circular_book,
                               fontSize: _sizes.width14dp(context)),
                         ),
                         Opacity(

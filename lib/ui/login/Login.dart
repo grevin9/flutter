@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/database/database_login.dart';
-import 'package:flutter_app/common/shared_preferences/session.dart';
-import 'package:flutter_app/common/widget/button.dart';
-import 'package:flutter_app/common/colors.dart';
-import 'package:flutter_app/common/sizes.dart';
-import 'package:flutter_app/common/widget/button_facebook.dart';
-import 'package:flutter_app/common/widget/button_google.dart';
-import 'package:flutter_app/common/validation/validation_login.dart';
-import 'package:flutter_app/ui/login/forgot_password_page.dart';
-import 'package:flutter_app/ui/login/signup_page.dart';
-import 'package:flutter_app/ui/main/main_home_page.dart';
+import 'package:flutter_app/common/FontFamily.dart';
+import 'package:flutter_app/common/database/DatabaseLogin.dart';
+import 'package:flutter_app/common/sharePreferences/Session.dart';
+import 'package:flutter_app/common/widget/Button.dart';
+import 'package:flutter_app/common/Colors.dart';
+import 'package:flutter_app/common/Sizes.dart';
+import 'package:flutter_app/common/widget/ButtonFacebook.dart';
+import 'package:flutter_app/common/widget/ButtonGoogle.dart';
+import 'package:flutter_app/common/validation/ValidationLogin.dart';
+import 'package:flutter_app/ui/login/ForgotPassword.dart';
+import 'package:flutter_app/ui/login/SignUp.dart';
+import 'package:flutter_app/ui/main/Main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:toast/toast.dart';
@@ -34,7 +35,7 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context).tr('login_page.top'),
-          style: TextStyle(color: ca_blue),
+          style: TextStyle(fontFamily: circular_book, color: ca_blue),
         ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: ca_blue),
@@ -50,13 +51,13 @@ class _LoginState extends State<Login> {
             AppLocalizations.of(context).tr('login_page.title'),
             style: TextStyle(
                 fontSize: _sizes.width20dp(context),
-                fontFamily: "CircularStd-Bold"),
+                fontFamily: circular_bold),
           ),
           Text(
             AppLocalizations.of(context).tr('login_page.subtitle'),
             style: TextStyle(
                 fontSize: _sizes.width16dp(context),
-                fontFamily: "CircularStd-Book"),
+                fontFamily: circular_book),
           ),
           _form(),
           _other(),
@@ -77,7 +78,7 @@ class _LoginState extends State<Login> {
                 AppLocalizations.of(context).tr("login_page.dont_have_account"),
                 style: TextStyle(
                     fontSize: _sizes.width14dp(context),
-                    fontFamily: "CircularStd-Book"),
+                    fontFamily: circular_medium),
               ),
               GestureDetector(
                 onTap: () => Navigator.push(
@@ -87,7 +88,7 @@ class _LoginState extends State<Login> {
                   style: TextStyle(
                       fontSize: _sizes.width14dp(context),
                       fontWeight: FontWeight.bold,
-                      fontFamily: "CircularStd-Book"),
+                      fontFamily: circular_medium),
                 ),
               )
             ],
@@ -134,7 +135,7 @@ class _LoginState extends State<Login> {
                 style: TextStyle(
                     decoration: TextDecoration.underline,
                     fontSize: _sizes.width14dp(context),
-                    fontFamily: 'CircularStd-Book'),
+                    fontFamily: circular_medium),
               ),
               onTap: () {
                 Navigator.push(context,
@@ -200,6 +201,7 @@ class _LoginState extends State<Login> {
           ),
           Text(
             AppLocalizations.of(context).tr('login_page.or'),
+            style: TextStyle(fontFamily: circular_medium),
           ),
           Container(
             width: MediaQuery.of(context).size.width / 2.5,

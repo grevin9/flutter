@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/colors.dart';
-import 'package:flutter_app/ui/main/home_page.dart';
-import 'package:flutter_app/ui/main/map_page.dart';
-import 'package:flutter_app/ui/main/photo_page.dart';
-import 'package:flutter_app/ui/main/setting_page.dart';
+import 'package:flutter_app/common/Colors.dart';
+import 'package:flutter_app/ui/main/MainHome.dart';
+import 'package:flutter_app/ui/main/MainMap.dart';
+import 'package:flutter_app/ui/main/MainPhoto.dart';
+import 'package:flutter_app/ui/main/MainSetting.dart';
 
 class Main extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  var _index = 1;
+  var _index = 2;
 
   @override
   Widget build(BuildContext context) {

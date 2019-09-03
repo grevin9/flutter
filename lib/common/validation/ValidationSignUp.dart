@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/common/validation/validation.dart';
+import 'package:flutter_app/common/validation/Validation.dart';
 
 class ValidationSignUp{
   userName(BuildContext context, String value){

@@ -26,6 +26,7 @@ dependencies:
   toast: ^0.1.5
   sqflite: ^1.1.6
   path_provider: ^0.4.1
+  google_maps_flutter: ^0.5.20+2
 
 dev_dependencies:
   flutter_test:
@@ -49,14 +50,20 @@ flutter:
     - assets/images/login/
 
   fonts:
-    - family: CircularStd
+    - family: CircularBlack
       fonts:
         - asset: assets/fonts/circular/CircularStd-Black.otf
         - asset: assets/fonts/circular/CircularStd-BlackItalic.otf
+    - family: CircularBold
+      fonts:
         - asset: assets/fonts/circular/CircularStd-Bold.otf
         - asset: assets/fonts/circular/CircularStd-BoldItalic.otf
+    - family: CircularBook
+      fonts:
         - asset: assets/fonts/circular/CircularStd-Book.otf
         - asset: assets/fonts/circular/CircularStd-BookItalic.otf
+    - family: CircularMedium
+      fonts:
         - asset: assets/fonts/circular/CircularStd-Medium.otf
         - asset: assets/fonts/circular/CircularStd-MediumItalic.otf
 
