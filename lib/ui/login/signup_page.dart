@@ -250,9 +250,9 @@ class _SignUpState extends State<SignUp> {
       DatabaseLogin.columnUserName: _userNameController.text,
       DatabaseLogin.columnPassword: _passwordController.text,
       DatabaseLogin.columnFullName: _fullNameController.text,
-      DatabaseLogin.columnBOD: _dateController,
-      DatabaseLogin.columnEmail: _emailController,
-      DatabaseLogin.columnPhone: _phoneController,
+      DatabaseLogin.columnBOD: _dateController.text,
+      DatabaseLogin.columnEmail: _emailController.text,
+      DatabaseLogin.columnPhone: _phoneController.text,
       DatabaseLogin.columnGender: _gender,
     };
     await db.insert(row);

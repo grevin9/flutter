@@ -5,19 +5,20 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseLogin {
-  static final _version       = 1;
-  static final _databaseName  = 'login.db';
-  static final tableName      = 'users';
-  static final columnId       = '_id';
+  static final _version = 1;
+  static final _databaseName = 'login.db';
+  static final tableName = 'users';
+  static final columnId = '_id';
   static final columnUserName = 'username';
   static final columnPassword = 'password';
   static final columnFullName = 'fullname';
-  static final columnBOD      = 'bod';
-  static final columnEmail    = 'email';
-  static final columnPhone    = 'phone';
-  static final columnGender   = 'gender';
+  static final columnBOD = 'bod';
+  static final columnEmail = 'email';
+  static final columnPhone = 'phone';
+  static final columnGender = 'gender';
 
   DatabaseLogin._privateConstructor();
+
   static final DatabaseLogin instance = DatabaseLogin._privateConstructor();
 
   static Database _database;
@@ -35,7 +36,8 @@ class DatabaseLogin {
   }
 
   Future _onCreate(Database db, int version) async {
-    await db.execute('''CREATE TABLE $tableName($columnId INTEGER PRIMARY KEY, $columnUserName TEXT, $columnPassword TEXT, $columnFullName TEXT, $columnBOD TEXT, $columnEmail TEXT, $columnPhone TEXT, $columnGender INTEGER)''');
+    await db.execute(
+        '''CREATE TABLE $tableName($columnId INTEGER PRIMARY KEY, $columnUserName TEXT, $columnPassword TEXT, $columnFullName TEXT, $columnBOD TEXT, $columnEmail TEXT, $columnPhone TEXT, $columnGender INTEGER)''');
   }
 
   Future<int> insert(Map<String, dynamic> row) async {
@@ -51,7 +53,11 @@ class DatabaseLogin {
   Future<int> getLogin(Map<String, dynamic> row) async {
     Database db = await instance.database;
     String username = row[columnUserName];
+    String email = row[columnUserName];
+    String phone = row[columnUserName];
     String password = row[columnPassword];
-    return Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM $tableName WHERE $columnUserName=? AND $columnPassword=?', ['$username', '$password']));
+    return Sqflite.firstIntValue(await db.rawQuery(
+        'SELECT COUNT(*) FROM $tableName WHERE $columnUserName=? OR $columnEmail=? OR $columnPhone=? AND $columnPassword=?',
+        ['$username', '$email', '$phone', '$password']));
   }
 }
