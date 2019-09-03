@@ -10,7 +10,7 @@
     "top"               : "MASUK",
     "title"             : "Selamat Datang",
     "subtitle"          : "Masuk untuk lanjut",
-    "hint_user_name"    : "Nama pengguna atau Telepon",
+    "hint_user_name"    : "Nama pengguna atau Email atau Telepon",
     "hint_passowrd"     : "Kata sandi",
     "forgot_password"   : "Lupa kata sandi?",
     "button"            : "Masuk",
@@ -70,5 +70,11 @@
   "forgot_password_validation": {
     "email_filled"  : "Email harus diisi",
     "email_valid"   : "Email tidak valif"
+  },
+  "main_home_page": {
+    "home": "Beranda",
+    "photo": "Foto",
+    "map": "Peta",
+    "setting": "Pengaturan"
   }
 }

@@ -10,7 +10,7 @@
     "top"               : "LOGIN",
     "title"             : "Welcome",
     "subtitle"          : "Sign in to continue",
-    "hint_user_name"    : "Username or Phone",
+    "hint_user_name"    : "Username or Email or Phone",
     "hint_passowrd"     : "Password",
     "forgot_password"   : "Forgot passoword?",
     "button"            : "Sign In",
@@ -70,5 +70,11 @@
   "forgot_password_validation": {
     "email_filled"  : "Email must be filled",
     "email_valid"   : "Invalid email"
+  },
+  "main_home_page": {
+    "home": "Home",
+    "photo": "Photo",
+    "map": "Map",
+    "setting": "Setting"
   }
 }

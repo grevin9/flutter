@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/database/database_login.dart';
+import 'package:flutter_app/common/shared_preferences/session.dart';
 import 'package:flutter_app/common/widget/button.dart';
 import 'package:flutter_app/common/colors.dart';
 import 'package:flutter_app/common/sizes.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_app/common/widget/button_google.dart';
 import 'package:flutter_app/common/validation/validation_login.dart';
 import 'package:flutter_app/ui/login/forgot_password_page.dart';
 import 'package:flutter_app/ui/login/signup_page.dart';
-import 'package:flutter_app/ui/main/main_page.dart';
+import 'package:flutter_app/ui/main/main_home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:toast/toast.dart';
@@ -20,6 +21,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   Sizes _sizes = Sizes();
+  Session _session = Session();
   ValidationLogin _validation = ValidationLogin();
   final _validator = GlobalKey<FormState>();
   final db = DatabaseLogin.instance;
@@ -37,35 +39,29 @@ class _LoginState extends State<Login> {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: ca_blue),
       ),
-      body: Column(
+      body: ListView(
+        physics: ClampingScrollPhysics(),
+        padding: EdgeInsets.only(
+            left: _sizes.width16dp(context),
+            right: _sizes.width16dp(context),
+            top: _sizes.width16dp(context)),
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(
-                left: _sizes.width16dp(context),
-                right: _sizes.width16dp(context),
-                top: _sizes.width16dp(context)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  AppLocalizations.of(context).tr('login_page.title'),
-                  style: TextStyle(
-                      fontSize: _sizes.width20dp(context),
-                      fontFamily: "CircularStd-Bold"),
-                ),
-                Text(
-                  AppLocalizations.of(context).tr('login_page.subtitle'),
-                  style: TextStyle(
-                      fontSize: _sizes.width16dp(context),
-                      fontFamily: "CircularStd-Book"),
-                ),
-                _form(),
-                _other(),
-                _facebook(),
-                _google(),
-              ],
-            ),
+          Text(
+            AppLocalizations.of(context).tr('login_page.title'),
+            style: TextStyle(
+                fontSize: _sizes.width20dp(context),
+                fontFamily: "CircularStd-Bold"),
           ),
+          Text(
+            AppLocalizations.of(context).tr('login_page.subtitle'),
+            style: TextStyle(
+                fontSize: _sizes.width16dp(context),
+                fontFamily: "CircularStd-Book"),
+          ),
+          _form(),
+          _other(),
+          _facebook(),
+          _google(),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
@@ -229,7 +225,9 @@ class _LoginState extends State<Login> {
       DatabaseLogin.columnPassword: _passwordController.text,
     };
     final login = await db.getLogin(row);
-    if (login == 1) {
+    if (login != null) {
+      await _session.setUserName(login[0][DatabaseLogin.columnUserName]);
+      await _session.setFullName(login[0][DatabaseLogin.columnFullName]);
       Navigator.push(context, MaterialPageRoute(builder: (context) => Main()));
     } else {
       Toast.show(AppLocalizations.of(context).tr('login_page.login_fail'), context);

@@ -6,13 +6,13 @@ class ValidationSignUp{
   userName(BuildContext context, String value){
     if (value.isEmpty) {
       return AppLocalizations.of(context).tr('signup_validation.username_filled');
-    } else if (value.length < 3 && value.length > 15) {
-      return AppLocalizations.of(context).tr('signup_validation.username_valid');
+    } else if (value.length > 3 && value.length < 15) {
+      return null;
     }
-    return null;
+    return AppLocalizations.of(context).tr('signup_validation.username_valid');
   }
   password(BuildContext context, String value){
-    RegExp _no_upperCase    = new RegExp(r'^(?=.*[a-z])(?=.*[0-9])(?=\\S+$).{8,15}');
+    RegExp _no_upperCase    = new RegExp(r'^(?=.*[a-z])(?=.*[0-9])(?=\S+$).{8,15}');
     RegExp _with_upperCase  = new RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=\S+$).{8,15}');
     if (value.isEmpty) {
       return AppLocalizations.of(context).tr('signup_validation.password_filled');
@@ -55,9 +55,9 @@ class ValidationSignUp{
   phone(BuildContext context, String value) {
     if (value.isEmpty) {
       return AppLocalizations.of(context).tr('signup_validation.phone_filled');
-    } else if (value.length < 5 && value.length > 15) {
-      return AppLocalizations.of(context).tr('signup_validation.phone_valid');
+    } else if (value.length > 5 && value.length < 15) {
+      return null;
     }
-    return null;
+    return AppLocalizations.of(context).tr('signup_validation.phone_valid');
   }
 }

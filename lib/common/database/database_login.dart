@@ -50,14 +50,14 @@ class DatabaseLogin {
     return await db.query(tableName);
   }
 
-  Future<int> getLogin(Map<String, dynamic> row) async {
+  Future<List<Map<String, dynamic>>> getLogin(Map<String, dynamic> row) async {
     Database db = await instance.database;
     String username = row[columnUserName];
     String email = row[columnUserName];
     String phone = row[columnUserName];
     String password = row[columnPassword];
-    return Sqflite.firstIntValue(await db.rawQuery(
-        'SELECT COUNT(*) FROM $tableName WHERE $columnUserName=? OR $columnEmail=? OR $columnPhone=? AND $columnPassword=?',
-        ['$username', '$email', '$phone', '$password']));
+    return await db.rawQuery(
+        'SELECT * FROM $tableName WHERE $columnUserName=? OR $columnEmail=? OR $columnPhone=? AND $columnPassword=?',
+        ['$username', '$email', '$phone', '$password']);
   }
 }
