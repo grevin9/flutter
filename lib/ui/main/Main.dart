@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/Colors.dart';
+import 'package:flutter_app/common/FontFamily.dart';
 import 'package:flutter_app/ui/main/MainHome.dart';
 import 'package:flutter_app/ui/main/MainMap.dart';
 import 'package:flutter_app/ui/main/MainPhoto.dart';
@@ -34,19 +35,19 @@ class _MainState extends State<Main> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home, color: ca_red),
-            title: Text(AppLocalizations.of(context).tr('main_home_page.home'), style: TextStyle(color: ca_red))
+            title: Text(AppLocalizations.of(context).tr('main_home_page.home'), style: TextStyle(fontFamily: circular_bold, color: ca_red))
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.add_a_photo, color: ca_red),
-              title: Text(AppLocalizations.of(context).tr('main_home_page.photo'), style: TextStyle(color: ca_red))
+              title: Text(AppLocalizations.of(context).tr('main_home_page.photo'), style: TextStyle(fontFamily: circular_bold, color: ca_red))
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.map, color: ca_red),
-              title: Text(AppLocalizations.of(context).tr('main_home_page.map'), style: TextStyle(color: ca_red))
+              title: Text(AppLocalizations.of(context).tr('main_home_page.map'), style: TextStyle(fontFamily: circular_bold, color: ca_red))
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings, color: ca_red),
-              title: Text(AppLocalizations.of(context).tr('main_home_page.setting'), style: TextStyle(color: ca_red))
+              title: Text(AppLocalizations.of(context).tr('main_home_page.setting'), style: TextStyle(fontFamily: circular_bold, color: ca_red))
           )
         ],
         onTap: (index) {
