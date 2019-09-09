@@ -5,6 +5,7 @@ import 'package:flutter_app/common/widget/Button.dart';
 import 'package:flutter_app/common/Colors.dart';
 import 'package:flutter_app/common/FontFamily.dart';
 import 'package:flutter_app/common/Sizes.dart';
+import 'package:flutter_app/ui/route/Station.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart' as LocationManager;
 
@@ -20,6 +21,8 @@ class _State extends State<MainMap> {
   var _fromController = TextEditingController();
   var _toController = TextEditingController();
   var latlng;
+  var _fromStation = 'Current Location';
+  var _toStation = 'Current Locaiton';
 
   static final CameraPosition _location = CameraPosition(
     target: LatLng(-6.1702962, 106.7887946),
@@ -66,8 +69,7 @@ class _State extends State<MainMap> {
         onMapCreated: _onMapCreated,
         markers: markers,
       ),
-      bottomSheet: _bottomsheet()
-
+      bottomSheet: _bottomsheet(),
 //      floatingActionButton: FloatingActionButton(
 //        onPressed: () {
 //          setState(() {
@@ -78,75 +80,115 @@ class _State extends State<MainMap> {
     );
   }
 
-   Widget _bottomsheet(){
-      return Container(
-        decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  blurRadius: 8.0,
-                  color: Colors.black.withOpacity(.6),
-                  offset: Offset(1.0, 2.0))
-            ],
-            borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
-            color: Colors.white),
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.only(
-            left: _sizes.width16dp(context),
-            right: _sizes.width16dp(context)),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Icon(Icons.drag_handle),
-            Container(
-              height: 1,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.black38,
-            ),
-            Container(
-                margin: EdgeInsets.only(top: _sizes.width16dp(context)),
-                alignment: Alignment.topLeft,
-                child: Text('From',
-                    style: TextStyle(
-                        fontFamily: circular_medium,
-                        fontSize: _sizes.width14dp(context)))),
-            TextField(
-              controller: _fromController,
-              decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.close),
-                    onPressed: () {
-                      setState(() {
-                        _fromController.text = "";
-                      });
-                    },
-                  ),
-                  hintText: 'Current Location',
-                  hintStyle: TextStyle(fontSize: _sizes.width14dp(context))),
-            ),
-            Container(
-                margin: EdgeInsets.only(top: _sizes.width20dp(context)),
-                alignment: Alignment.topLeft,
-                child: Text('To',
-                    style: TextStyle(
-                        fontFamily: circular_medium,
-                        fontSize: _sizes.width14dp(context)))),
-            TextField(
-              controller: _toController,
-              decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.close),
-                    onPressed: () {
-                      setState(() {
-                        _toController.text = "";
-                      });
-                    },
-                  ),
-                  hintText: 'Current Location',
-                  hintStyle: TextStyle(fontSize: _sizes.width14dp(context))),
-            ),
-            Button(title: 'ROUTE')
+  Widget _bottomsheet() {
+    return Container(
+      decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                blurRadius: 8.0,
+                color: Colors.black.withOpacity(.6),
+                offset: Offset(1.0, 2.0))
           ],
-        ),
-      );
+          borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
+          color: Colors.white),
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.only(
+          left: _sizes.width16dp(context), right: _sizes.width16dp(context)),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Icon(Icons.drag_handle),
+          Container(
+            height: 1,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.black38,
+          ),
+          Container(
+              margin: EdgeInsets.only(top: _sizes.width16dp(context)),
+              alignment: Alignment.topLeft,
+              child: Text('From',
+                  style: TextStyle(
+                      fontFamily: circular_medium,
+                      fontSize: _sizes.width14dp(context)))),
+//            TextField(
+//              controller: _fromController,
+//              decoration: InputDecoration(
+//                  suffixIcon: IconButton(
+//                    icon: Icon(Icons.close),
+//                    onPressed: () {
+//                      setState(() {
+//                        _fromController.text = "";
+//                      });
+//                    },
+//                  ),
+//                  hintText: 'Current Location',
+//                  hintStyle: TextStyle(fontSize: _sizes.width14dp(context))),
+//            ),
+          Container(
+            margin: EdgeInsets.only(top: _sizes.width8dp(context)),
+            alignment: Alignment.topLeft,
+            child: GestureDetector(
+              onTap: () => _selectStation(context, 1),
+                child: Text(
+              _fromStation,
+              style: TextStyle(fontFamily: circular_medium, color: Colors.grey),
+            )),
+          ),
+          Container(
+            width: _sizes.width(context),
+            height: 1,
+            margin: EdgeInsets.only(top: _sizes.width12dp(context)),
+            color: Colors.black38,
+          ),
+          Container(
+              margin: EdgeInsets.only(top: _sizes.width20dp(context)),
+              alignment: Alignment.topLeft,
+              child: Text('To',
+                  style: TextStyle(
+                      fontFamily: circular_medium,
+                      fontSize: _sizes.width14dp(context)))),
+//          TextField(
+//            controller: _toController,
+//            decoration: InputDecoration(
+//                suffixIcon: IconButton(
+//                  icon: Icon(Icons.close),
+//                  onPressed: () {
+//                    setState(() {
+//                      _toController.text = "";
+//                    });
+//                  },
+//                ),
+//                hintText: 'Current Location',
+//                hintStyle: TextStyle(fontSize: _sizes.width14dp(context))),
+//          ),
+          Container(
+            margin: EdgeInsets.only(top: _sizes.width8dp(context)),
+            alignment: Alignment.topLeft,
+            child: GestureDetector(
+                onTap: () => _selectStation(context, 2),
+                child: Text(
+                  _toStation,
+                  style: TextStyle(fontFamily: circular_medium, color: Colors.grey),
+                )),
+          ),
+          Container(
+            width: _sizes.width(context),
+            height: 1,
+            margin: EdgeInsets.only(top: _sizes.width12dp(context)),
+            color: Colors.black38,
+          ),
+          Button(title: 'ROUTE')
+        ],
+      ),
+    );
+  }
+
+  _selectStation(BuildContext context, int position) async {
+    final String station = await Navigator.push(context, MaterialPageRoute(builder: (context) => StationScreen()));
+    setState(() {
+      if(station!=null) {
+        position == 1 ? _fromStation = station : _toStation = station;
+      }
+    });
   }
 }

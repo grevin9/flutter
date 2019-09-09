@@ -18,14 +18,14 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'WELCOME',
-          style: TextStyle(color: ca_blue),
-        ),
-        iconTheme: IconThemeData(color: ca_blue),
-        backgroundColor: Colors.white,
-      ),
+//      appBar: AppBar(
+//        title: Text(
+//          'WELCOME',
+//          style: TextStyle(color: ca_blue),
+//        ),
+//        iconTheme: IconThemeData(color: ca_blue),
+//        backgroundColor: Colors.white,
+//      ),
       body: Container(
         child: _index==0?MainHome():_index==1?MainPhoto():_index==2?MainMap():MainSetting(),
       ),
