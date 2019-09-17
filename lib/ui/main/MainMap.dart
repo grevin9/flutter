@@ -70,13 +70,13 @@ class _State extends State<MainMap> {
         markers: markers,
       ),
       bottomSheet: _bottomsheet(),
-//      floatingActionButton: FloatingActionButton(
-//        onPressed: () {
-//          setState(() {
-//            _addMaker();
-//          });
-//        },
-//      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            _addMaker();
+          });
+        },
+      ),
     );
   }
 
