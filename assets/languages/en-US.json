@@ -72,9 +72,21 @@
     "email_valid"   : "Invalid email"
   },
   "main_home_page": {
-    "home": "Home",
-    "photo": "Photo",
-    "map": "Map",
-    "setting": "Setting"
+    "home"    : "Home",
+    "photo"   : "Photo",
+    "map"     : "Map",
+    "setting" : "Setting"
+  },
+  "setting": {
+    "top"           : "Setting",
+    "language"      : "Language",
+    "logout"        : "Log Out",
+    "edit_profile"  : "Edit Profile",
+    "about_us"      : "About Us"
+  },
+  "language": {
+    "top"       : "Language",
+    "english"   : "English",
+    "indonesia" : "Indonesia"
   }
 }

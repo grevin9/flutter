@@ -24,6 +24,15 @@
 	<string>Cari Aja</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Application needs to access your current location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Application needs to access your current location</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -44,10 +53,6 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>io.flutter.embedded_views_preview</key>
-    <true/>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Application needs to access your current location</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Application needs to access your current location</string>
+	<true/>
 </dict>
 </plist>

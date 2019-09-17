@@ -72,9 +72,21 @@
     "email_valid"   : "Email tidak valif"
   },
   "main_home_page": {
-    "home": "Beranda",
-    "photo": "Foto",
-    "map": "Peta",
-    "setting": "Pengaturan"
+    "home"    : "Beranda",
+    "photo"   : "Foto",
+    "map"     : "Peta",
+    "setting" : "Pengaturan"
+  },
+  "setting": {
+    "top"           : "Pengaturan",
+    "language"      : "Bahasa",
+    "logout"        : "Keluar",
+    "edit_profile"  : "Ubah Profil",
+    "about_us"      : "Tentang Kami"
+  },
+  "language": {
+    "top"       : "Bahasa",
+    "english"   : "Inggris",
+    "indonesia" : "Bahasa Indonesia"
   }
 }
